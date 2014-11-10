@@ -44,12 +44,6 @@
         AVAssetTrack *assetTrack = [asset tracksWithMediaType:AVMediaTypeVideo].firstObject;
         AVAssetTrack *audioAssetTrack = [asset tracksWithMediaType:AVMediaTypeAudio].firstObject;
         
-        if (CGSizeEqualToSize(size, CGSizeZero)) {
-            size = assetTrack.naturalSize;;
-        }
-        
-        NSLog(@"Duration: %@", @(assetTrack.timeRange.duration.value));
-        
         NSError *error;
         [videoCompositionTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, assetTrack.timeRange.duration)
                                        ofTrack:assetTrack
@@ -68,7 +62,7 @@
         }
         
         AVMutableVideoCompositionInstruction *firstVideoCompositionInstruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
-        firstVideoCompositionInstruction.backgroundColor = [[NSColor yellowColor] CGColor];
+        firstVideoCompositionInstruction.backgroundColor = [[NSColor blackColor] CGColor];
         firstVideoCompositionInstruction.timeRange = CMTimeRangeMake(time, assetTrack.timeRange.duration);
         
         AVMutableVideoCompositionLayerInstruction *firstVideoLayerInstruction;
@@ -78,6 +72,10 @@
         [instructions addObject:firstVideoCompositionInstruction];
         
         time = CMTimeAdd(time, assetTrack.timeRange.duration);
+        
+        if (CGSizeEqualToSize(size, CGSizeZero)) {
+            size = assetTrack.naturalSize;;
+        }
     }
     
     AVMutableVideoComposition *mutableVideoComposition = [AVMutableVideoComposition videoComposition];
