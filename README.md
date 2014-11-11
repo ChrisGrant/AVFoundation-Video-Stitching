@@ -1,11 +1,4 @@
----
-author: cgrant
-title: Video Stitching with AVFoundation
-tags: 
-categories: 
-summary: Explaining the very basics of AVFoundation while building a Mac Application that stitches 3 .mov files together.
-layout: default_post
----
+#AVFoundation Video Stitching
 
 When I originally started this project, it was my intention to develop a tool for iOS Developers attempting to create App Preview videos for their apps on the App Store. While reading [Getting Started with App Previews](http://dancounsell.com/articles/getting-started-with-app-previews) by Dan Counsell, I realised that to create videos with the correct size, my only option was Final Cut Pro. A £199.99 piece of software. I searched for a free alternative but found nothing, so started to develop my own.
 
