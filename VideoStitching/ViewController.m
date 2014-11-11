@@ -61,15 +61,10 @@
             NSLog(@"Error - %@", error.debugDescription);
         }
         
-        AVMutableVideoCompositionInstruction *firstVideoCompositionInstruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
-        firstVideoCompositionInstruction.backgroundColor = [[NSColor blackColor] CGColor];
-        firstVideoCompositionInstruction.timeRange = CMTimeRangeMake(time, assetTrack.timeRange.duration);
-        
-        AVMutableVideoCompositionLayerInstruction *firstVideoLayerInstruction;
-        firstVideoLayerInstruction = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoCompositionTrack];
-        firstVideoCompositionInstruction.layerInstructions = @[firstVideoLayerInstruction];
-        
-        [instructions addObject:firstVideoCompositionInstruction];
+        AVMutableVideoCompositionInstruction *videoCompositionInstruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
+        videoCompositionInstruction.timeRange = CMTimeRangeMake(time, assetTrack.timeRange.duration);
+        videoCompositionInstruction.layerInstructions = @[[AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoCompositionTrack]];
+        [instructions addObject:videoCompositionInstruction];
         
         time = CMTimeAdd(time, assetTrack.timeRange.duration);
         
